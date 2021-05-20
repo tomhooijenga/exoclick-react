@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useScript } from '../useScript';
 
 const subProp = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
 
@@ -14,6 +15,12 @@ const propTypes = {
 type BannerProps = PropTypes.InferProps<typeof propTypes>;
 
 export const Banner: React.FC<BannerProps> = ({ zoneId, sub, sub2, sub3, keywords }) => {
+  const { loading } = useScript('https://a.realsrv.com/ad-provider.js');
+
+  if (!loading) {
+    window.AdProvider.push({ serve: {} });
+  }
+
   return (
     <ins
       className="adsbyexoclick"
@@ -21,7 +28,7 @@ export const Banner: React.FC<BannerProps> = ({ zoneId, sub, sub2, sub3, keyword
       data-sub={sub}
       data-sub2={sub2}
       data-sub3={sub3}
-      data-keywords={(keywords || []).join(',')}
+      data-keywords={keywords?.join(',')}
     />
   );
 };
