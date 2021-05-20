@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useScript } from '../useScript';
 
@@ -15,21 +15,23 @@ const propTypes = {
 type BannerProps = PropTypes.InferProps<typeof propTypes>;
 
 export const Banner: React.FC<BannerProps> = ({ zoneId, sub, sub2, sub3, keywords }) => {
-  const { loading } = useScript('https://a.realsrv.com/ad-provider.js');
+  useScript('https://a.realsrv.com/ad-provider.js');
 
-  if (!loading) {
+  useEffect(() => {
     window.AdProvider.push({ serve: {} });
-  }
+  }, [zoneId]);
 
   return (
-    <ins
-      className="adsbyexoclick"
-      data-zoneid={zoneId}
-      data-sub={sub}
-      data-sub2={sub2}
-      data-sub3={sub3}
-      data-keywords={keywords?.join(',')}
-    />
+    <div key={zoneId}>
+      <ins
+        className="adsbyexoclick"
+        data-zoneid={zoneId}
+        data-sub={sub}
+        data-sub2={sub2}
+        data-sub3={sub3}
+        data-keywords={keywords?.join(',')}
+      />
+    </div>
   );
 };
 
