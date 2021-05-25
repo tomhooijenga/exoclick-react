@@ -1,16 +1,16 @@
-# @exoclick/react sdk
+# @exo-click/react sdk
 Use [ExoClick's banners](https://www.exoclick.com/signup/?login=tomhooijenga) in React.
 
 Installation
 ```bash
-npm install @exoclick/react
+npm install @exo-click/react
 # or
-yarn add @exoclick/react
+yarn add @exo-click/react
 ```
 
 # Usage
 ```jsx
-import { Banner, Outstream } from "@exoclick/react";
+import { Banner, Outstream } from "@exo-click/react";
 
 // Banner, Mobile Banner and Multi-Format
 <Banner zoneId={123}

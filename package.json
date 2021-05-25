@@ -1,5 +1,5 @@
 {
-  "name": "@exoclick/react",
+  "name": "@exo-click/react",
   "version": "1.0.0",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -47,7 +47,7 @@
     "start-example": "cd example && npm start",
     "deploy-example": "cd example && npm run deploy",
     "dev": "concurrently --kill-others \"npm run build-watch\" \"npm run start-example\"",
-    "test": "npm run lint && npm run test:unit",
+    "test": "npm run lint:fix && npm run test:unit",
     "pretest": "npm run build",
     "test:unit": "jest",
     "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",

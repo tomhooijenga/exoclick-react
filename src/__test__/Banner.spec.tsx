@@ -10,7 +10,7 @@ test('Banner', () => {
   expect(ins).toBeInTheDocument();
   expect(ins).toBeEmptyDOMElement();
   expect(ins).toHaveClass('adsbyexoclick');
-  expect(ins).toHaveAttribute('data-zoneid', '1');
+  expect(ins).toHaveAttribute('data-zoneid', '4176664');
 });
 
 test('Banner should cleanup external dom', () => {
