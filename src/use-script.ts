@@ -36,6 +36,11 @@ export function useScript(src: string): { loading: boolean } {
     script.src = src;
 
     document.body.appendChild(script);
+
+    return () => {
+      loadingMap.delete(src);
+      script.remove();
+    };
   }, [src]);
 
   return { loading };

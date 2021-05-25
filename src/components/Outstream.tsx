@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
-import { useScript } from '../useScript';
+import { useScript } from '../use-script';
 import { baseProps } from '../base-props';
 import { InitOptions } from '../types';
 
