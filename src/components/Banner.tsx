@@ -10,6 +10,10 @@ const propTypes = {
 type BannerProps = PropTypes.InferProps<typeof propTypes>;
 
 export const Banner: React.FC<BannerProps> = React.memo(function Banner({ zoneId, sub, sub2, sub3, keywords }) {
+  useEffect(() => {
+    window.AdProvider = window.AdProvider || [];
+  }, []);
+
   useScript('https://a.realsrv.com/ad-provider.js');
 
   const divRef = useRef<HTMLDivElement>(null);
