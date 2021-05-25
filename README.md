@@ -18,10 +18,11 @@ import { Banner, Outstream } from "exoclick-react";
 // Outstream Video
 <Outstream zoneId={123} />
 ```
+Check out [all the docs](https://exoclick-react.netlify.app).
 
 # Features
 Currently, supported formats of ExoClick are:
-* Banner (Web)
-* Banner (Mobile)
-* Multi-Format
-* Outstream video
+* [Banner (Web)](https://exoclick-react.netlify.app/src-components-banner-banner#regular-web)
+* [Banner (Mobile)](https://exoclick-react.netlify.app/src-components-banner-banner#mobile)
+* [Banner (Multi-Format)](https://exoclick-react.netlify.app/src-components-banner-banner#multi-format)
+* [Outstream video](https://exoclick-react.netlify.app/src-components-outstream-outstream)
