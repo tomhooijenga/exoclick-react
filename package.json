@@ -53,7 +53,7 @@
     "test:unit": "jest",
     "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "docz": "docz",
+    "docz:build": "docz build",
     "docz:dev": "docz dev"
   },
   "files": [
