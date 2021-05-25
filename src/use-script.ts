@@ -1,39 +1,64 @@
 import { useEffect, useState } from 'react';
 
 type LoadingState = Promise<void> | 'done';
-const loadingMap = new Map<string, LoadingState>();
+type Options = {
+  inline: boolean;
+  batch: boolean;
+};
 
-export function useScript(src: string): { loading: boolean } {
+const loadingMap = new Map<string, LoadingState>();
+const defaultOptions = {
+  inline: false,
+  batch: true,
+} as const;
+
+export function useScript(src: string, options: Partial<Options> = {}): { loading: boolean } {
+  options = { ...defaultOptions, ...options };
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const state = loadingMap.get(src);
-    if (state !== undefined) {
-      if (state === 'done') {
-        setLoading(false);
-      } else {
-        state.then(() => {
+    if (options.batch) {
+      const state = loadingMap.get(src);
+      if (state !== undefined) {
+        if (state === 'done') {
           setLoading(false);
-        });
-      }
+        } else {
+          state.then(() => {
+            setLoading(false);
+          });
+        }
 
-      return;
+        return;
+      }
     }
 
     const script = document.createElement('script');
 
-    const promise = new Promise<void>((resolve) => {
-      script.onload = () => {
-        setLoading(false);
+    if (options.inline) {
+      loadingMap.set(src, Promise.resolve());
+      setLoading(true);
+
+      queueMicrotask(() => {
         loadingMap.set(src, 'done');
-        resolve();
-      };
-    });
+        setLoading(false);
+      });
 
-    loadingMap.set(src, promise);
-    setLoading(true);
+      script.text = src;
+    } else {
+      const promise = new Promise<void>((resolve) => {
+        script.onload = () => {
+          setLoading(false);
+          loadingMap.set(src, 'done');
+          resolve();
+        };
+      });
 
-    script.src = src;
+      loadingMap.set(src, promise);
+      setLoading(true);
+
+      script.src = src;
+    }
 
     document.body.appendChild(script);
 
