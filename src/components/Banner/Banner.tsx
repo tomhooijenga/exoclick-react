@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useScript } from '../use-script';
-import { baseProps } from '../base-props';
+import { useScript } from '../../use-script';
+import { baseProps } from '../../base-props';
 
 const propTypes = {
   ...baseProps,

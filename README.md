@@ -13,7 +13,7 @@ yarn add @exo-click/react
 import { Banner, Outstream } from "@exo-click/react";
 
 // Banner, Mobile Banner and Multi-Format
-<Banner zoneId={123}
+<Banner zoneId={123} />
 
 // Outstream Video
 <Outstream zoneId={123} />

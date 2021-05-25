@@ -1,14 +1,22 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
-import { useScript } from '../use-script';
-import { baseProps } from '../base-props';
-import { InitOptions } from '../types';
+import { useScript } from '../../use-script';
+import { baseProps } from '../../base-props';
+import { InitOptions } from '../../types';
 
 const propTypes = {
   ...baseProps,
-  cat: PropTypes.number,
+  /**
+   * Once closed, stay hidden for this amount of minutes. Defaults to 0.
+   */
   frequency: PropTypes.number,
+  /**
+   * Show "Powered by ExoClick". Defaults to true.
+   */
   branding: PropTypes.bool,
+  /**
+   * Maximum width of video in pixels. Defaults to 100%.
+   */
   maxWidth: PropTypes.number,
 };
 
@@ -19,7 +27,6 @@ export const Outstream: React.FC<OutstreamProps> = React.memo(function Outstream
   sub,
   sub2,
   sub3,
-  cat,
   frequency,
   branding,
   maxWidth,
@@ -52,9 +59,6 @@ export const Outstream: React.FC<OutstreamProps> = React.memo(function Outstream
     }
     if (sub3 != null) {
       config.sub3 = +sub3;
-    }
-    if (cat != null) {
-      config.sub = +cat;
     }
     if (frequency != null) {
       config.frequency_period = +frequency;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { useScript } from '../use-script';
+import { useScript } from './use-script';
 
 function TestComponent() {
   useScript('./a.js');
