@@ -1,0 +1,20 @@
+---
+name: Adblock
+menu: Components
+---
+
+import { Playground } from 'docz';
+import { Adblock } from '../../index';
+
+<h1 id="component">Adblock</h1>
+A component to tell if the user has adblock enabled or not.
+
+## Basic usage
+<Playground>
+  <Adblock>
+    {({ blocked }) => <span>{blocked ? 'blocked' : 'not blocked'}</span>}
+  </Adblock>
+</Playground>
+
+## Props
+Adblock accepts only one child which must be a function.

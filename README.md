@@ -25,4 +25,8 @@ Currently, supported formats of ExoClick are:
 * [Banner (Web)](https://exoclick-react.netlify.app/src-components-banner-banner#regular-web)
 * [Banner (Mobile)](https://exoclick-react.netlify.app/src-components-banner-banner#mobile)
 * [Banner (Multi-Format)](https://exoclick-react.netlify.app/src-components-banner-banner#multi-format)
+* [Sticky Banner (Multi-Format)](https://exoclick-react.netlify.app/src-components-banner-banner#multi-format)
 * [Outstream video](https://exoclick-react.netlify.app/src-components-outstream-outstream)
+
+Additionally, there is also the [\<Adblock /> component](https://exoclick-react.netlify.app/src-components-adblock-adblock) to detect 
+if the user has ad-blocking enabled.
