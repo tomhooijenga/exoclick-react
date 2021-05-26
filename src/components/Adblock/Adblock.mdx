@@ -11,9 +11,16 @@ A component to tell if the user has adblock enabled or not.
 
 ## Basic usage
 <Playground>
-  <Adblock>
-    {({ blocked }) => <span>{blocked ? 'blocked' : 'not blocked'}</span>}
-  </Adblock>
+  {() => {
+    return (
+      // Workaround for SSR
+      typeof window === 'object' &&
+      // Actual code
+      <Adblock>
+        {({ blocked }) => <span>{blocked ? 'Blocked!' : 'Not blocked'}</span>}
+      </Adblock>
+    )
+  }}
 </Playground>
 
 ## Props
