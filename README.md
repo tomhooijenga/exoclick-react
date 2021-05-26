@@ -1,5 +1,5 @@
 # exoclick-react sdk
-Use [ExoClick's banners](https://www.exoclick.com/signup/?login=tomhooijenga) in React.
+Use [ExoClick's Ad formats](https://www.exoclick.com/signup/?login=tomhooijenga) in React.
 
 Installation
 ```bash
