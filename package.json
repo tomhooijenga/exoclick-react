@@ -1,6 +1,6 @@
 {
   "name": "exoclick-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "author": "Tom Hooijenga <tomhooijenga@gmail.com>",
@@ -8,7 +8,13 @@
   "license": "MIT",
   "types": "dist/index.d.ts",
   "description": "Use exoclick ads in React.",
-  "keywords": ["exoclick", "react", "banner", "outstream", "adblock"],
+  "keywords": [
+    "exoclick",
+    "react",
+    "banner",
+    "outstream",
+    "adblock"
+  ],
   "devDependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
