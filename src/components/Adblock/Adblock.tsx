@@ -6,7 +6,9 @@ const propTypes = {
   children: PropTypes.func.isRequired,
 };
 
-type AdblockProps = PropTypes.InferProps<typeof propTypes>;
+type AdblockProps = {
+  children: React.FC<{ blocked: boolean }>;
+};
 
 const style: CSSProperties = {
   width: '1px',
@@ -42,17 +44,18 @@ export const Adblock: React.FC<AdblockProps> = React.memo(function Adblock({ chi
   return (
     <>
       {children({ blocked })}
-      {ReactDOM.createPortal(
-        <iframe
-          ref={iframeRef}
-          id={`adsbox_ex_${id}`}
-          className="adsBox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links"
-          width="1px"
-          height="1px"
-          style={style}
-        />,
-        document.body,
-      )}
+      {typeof window === 'object' &&
+        ReactDOM.createPortal(
+          <iframe
+            ref={iframeRef}
+            id={`adsbox_ex_${id}`}
+            className="adsBox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links"
+            width="1px"
+            height="1px"
+            style={style}
+          />,
+          document.body,
+        )}
     </>
   );
 });
