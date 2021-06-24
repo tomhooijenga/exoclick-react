@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { baseProps } from '../../base-props';
 import { useScript } from '../../use-script';
 
-const clickProps = {
+const propTypes = {
+  ...baseProps,
+
   /**
    * How many times a link must be clicked to show the first interstitial. Defaults to 1.
    */
@@ -18,9 +20,6 @@ const clickProps = {
    * List of classes that count for the trigger clicks.
    */
   triggerClass: PropTypes.arrayOf(PropTypes.string.isRequired),
-};
-
-const timeProps = {
   /**
    * How often to show the ad in the given period.
    */
@@ -30,10 +29,6 @@ const timeProps = {
    * Once closed, stay hidden for this amount of minutes. Defaults to 720 (12 hours).
    */
   frequencyPeriod: PropTypes.number,
-};
-
-const bothProps = {
-  ...baseProps,
 
   /**
    * How to limit the display of interstitials.
@@ -41,19 +36,7 @@ const bothProps = {
   frequencyType: PropTypes.oneOf<'clicks' | 'time'>(['clicks', 'time']).isRequired,
 };
 
-const propTypes = {
-  ...clickProps,
-
-  ...timeProps,
-
-  ...bothProps,
-};
-
-type FullpageInterstitialProps = (
-  | (PropTypes.InferProps<typeof clickProps> & { frequencyType: 'clicks' })
-  | (PropTypes.InferProps<typeof timeProps> & { frequencyType: 'time' })
-) &
-  PropTypes.InferProps<typeof bothProps>;
+type FullpageInterstitialProps = PropTypes.InferProps<typeof propTypes>;
 
 export const FullpageInterstitial: React.FC<FullpageInterstitialProps> = React.memo(function FullpageInterstitial(
   props,
