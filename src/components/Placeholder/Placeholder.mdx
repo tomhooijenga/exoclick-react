@@ -1,0 +1,37 @@
+---
+name: Placeholder
+menu: Components
+---
+
+import { Playground, Props } from 'docz';
+import { Banner, Outstream, Placeholder } from "../../index";
+
+# Placeholder
+A helper component that has a fixed size. It creates a wrapper of the given width and height. This is done to reduce
+[layout shift](https://web.dev/cls/).
+
+## Banners
+Use it with [ExoClick banners](/src-components-banner-banner). This approach ensures that the browser can allocate the
+correct amount of space in the document while the banner is loading.
+
+<Playground>
+  <Placeholder width="728" height="90">
+    <Banner zoneId="2921652" />
+  </Placeholder>
+</Playground>
+
+## Outstream video
+Use it with [ExoClick outstream](/src-components-outstream-outstream) to prevent the slide-down effect from moving the
+content of the page.
+
+<Playground>
+  <Placeholder width="400" height="266">
+    <Outstream zoneId="4176664" maxWidth={400} />
+  </Placeholder>
+</Playground>
+
+
+
+## Props
+
+<Props of={Placeholder} />
