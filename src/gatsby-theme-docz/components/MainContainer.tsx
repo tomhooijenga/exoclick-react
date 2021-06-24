@@ -16,7 +16,7 @@ export const MainContainer: React.FC = ({ children }) => (
       {({ blocked }) =>
         blocked && (
           <section style={style}>
-            Hi! It seems you are using adblock. That is cool, but most <i>examples won't work</i>.
+            Hi! It seems you are using adblock. That is cool, but most <i>examples won&apos;t work</i>.
           </section>
         )
       }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 type LoadingState = Promise<void> | 'done';
 type Options = {
   inline: boolean;
-  batch: boolean;
+  singleton: boolean;
 };
 
 const loadingMap = new Map<string, LoadingState>();
@@ -12,13 +12,17 @@ const defaultOptions = {
   batch: true,
 } as const;
 
-export function useScript(src: string, options: Partial<Options> = {}): { loading: boolean } {
+export function useScript(
+  src: string,
+  options: Partial<Options> = {},
+  attributes: Record<string, string> = {},
+): { loading: boolean } {
   options = { ...defaultOptions, ...options };
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (options.batch) {
+    if (options.singleton) {
       const state = loadingMap.get(src);
       if (state !== undefined) {
         if (state === 'done') {
@@ -34,6 +38,8 @@ export function useScript(src: string, options: Partial<Options> = {}): { loadin
     }
 
     const script = document.createElement('script');
+
+    Object.entries(attributes).forEach(([name, value]) => script.setAttribute(name, value));
 
     if (options.inline) {
       loadingMap.set(src, Promise.resolve());

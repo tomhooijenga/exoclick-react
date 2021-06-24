@@ -1,0 +1,32 @@
+---
+name: Fullpage Interstitial
+menu: Components
+---
+import { Playground, Props } from 'docz';
+import { FullpageInterstitial } from './FullpageInterstitial';
+
+## Regular (Web)
+
+Classic Full Page Interstitial: horizontal. Opens on internal link and can be closed by viewer. It can be triggered once
+per zone.
+
+This type does not open if the screen is higher than it is tall, i.e., most mobile phones.
+
+<Playground>
+  <a href="#" onClick={(e) => e.preventDefault()} className="demo-desktop">Click me</a>
+  <FullpageInterstitial zoneId={4318792} frequencyType="clicks" firstTriggerClicks={1} nextTriggerClicks={1} triggerClass={['demo-desktop']} />
+</Playground>
+
+## Mobile
+
+Mobile Full Page Interstitial: Opens on internal link and closed by viewer. Unlike the desktop variant, the mobile version
+has no restrictions on the screen ratio.
+
+<Playground>
+  <a href="#" onClick={(e) => e.preventDefault()} className="demo-mobile">Click me</a>
+  <FullpageInterstitial zoneId={4318840} frequencyType="clicks" firstTriggerClicks={1} nextTriggerClicks={1} triggerClass={['demo-mobile']} />
+</Playground>
+
+## Props
+
+<Props of={FullpageInterstitial} />

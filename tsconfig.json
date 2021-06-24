@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./dist",
-    "target": "es6",
+    "target": "es2019",
     "jsx": "react",
     "typeRoots": [
       "src/types",

@@ -55,9 +55,7 @@ export const StickyBanner: React.FC<StickyBannerProps> = React.memo(function Sti
   }
 
   const { loading: loadingInline } = useScript(script, { inline: true });
-  const { loading: loadingExternal } = useScript(`https://a.realsrv.com/js.php?t=17&idzone=${zoneId}`, {
-    batch: false,
-  });
+  const { loading: loadingExternal } = useScript(`https://a.realsrv.com/js.php?t=17&idzone=${zoneId}`);
 
   useEffect(() => {
     if (loadingInline || loadingExternal) {
