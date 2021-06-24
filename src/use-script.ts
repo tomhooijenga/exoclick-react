@@ -7,9 +7,9 @@ type Options = {
 };
 
 const loadingMap = new Map<string, LoadingState>();
-const defaultOptions = {
+const defaultOptions: Options = {
   inline: false,
-  batch: true,
+  singleton: true,
 } as const;
 
 export function useScript(
