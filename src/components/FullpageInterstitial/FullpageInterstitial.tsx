@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { baseProps } from '../../base-props';
 import { useScript } from '../../use-script';
@@ -41,31 +41,46 @@ type FullpageInterstitialProps = PropTypes.InferProps<typeof propTypes>;
 export const FullpageInterstitial: React.FC<FullpageInterstitialProps> = React.memo(function FullpageInterstitial(
   props,
 ) {
-  const attributes = Object.fromEntries(
-    [
-      ['data-idzone', props.zoneId.toString()],
-      ['data-sub', props.sub],
-      ['data-sub2', props.sub2],
-      ['data-sub3', props.sub3],
-      ['data-ad_tags', props.keywords?.join(',')],
-    ].filter(([, value]) => !!value),
-  );
+  const attributes = useMemo(() => {
+    const attributes = Object.fromEntries(
+      [
+        ['data-idzone', props.zoneId.toString()],
+        ['data-sub', props.sub],
+        ['data-sub2', props.sub2],
+        ['data-sub3', props.sub3],
+        ['data-ad_tags', props.keywords?.join(',')],
+      ].filter(([, value]) => !!value),
+    );
 
-  if (props.frequencyType === 'time') {
-    Object.assign(attributes, {
-      'data-ad_frequency_count': props.frequencyCount,
-      'data-ad_frequency_period': props.frequencyPeriod,
-    });
-  } else {
-    Object.assign(attributes, {
-      'data-ad_first_trigger_clicks': props.firstTriggerClicks,
-      'data-ad_next_trigger_clicks': props.nextTriggerClicks,
-      'data-ad_trigger_method': props.triggerClass?.length ? '2' : '3',
-      'data-ad_trigger_class': props.triggerClass?.join(', '),
-    });
-  }
+    if (props.frequencyType === 'time') {
+      Object.assign(attributes, {
+        'data-ad_frequency_count': props.frequencyCount,
+        'data-ad_frequency_period': props.frequencyPeriod,
+      });
+    } else {
+      Object.assign(attributes, {
+        'data-ad_first_trigger_clicks': props.firstTriggerClicks,
+        'data-ad_next_trigger_clicks': props.nextTriggerClicks,
+        'data-ad_trigger_method': props.triggerClass?.length ? '2' : '3',
+        'data-ad_trigger_class': props.triggerClass?.join(', '),
+      });
+    }
+    return attributes;
+  }, [
+    props.zoneId,
+    props.sub,
+    props.sub2,
+    props.sub3,
+    props.keywords,
+    props.frequencyType,
+    props.frequencyCount,
+    props.frequencyPeriod,
+    props.firstTriggerClicks,
+    props.nextTriggerClicks,
+    props.triggerClass,
+  ]);
 
-  const { loading } = useScript('https://a.realsrv.com/fp-interstitial.js', undefined, attributes);
+  const { loading } = useScript('https://a.realsrv.com/fp-interstitial.js', { singleton: false }, attributes);
 
   useEffect(() => {
     if (loading) {
