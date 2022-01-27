@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { baseProps } from '../../base-props';
 import { useScript } from '../../use-script';
+import { prepareZoneId } from '../../zone-id';
 
 const propTypes = {
   ...baseProps,
@@ -44,7 +45,7 @@ export const FullpageInterstitial: React.FC<FullpageInterstitialProps> = React.m
   const attributes = useMemo(() => {
     const attributes = Object.fromEntries(
       [
-        ['data-idzone', props.zoneId.toString()],
+        ['data-idzone', prepareZoneId(props.zoneId, 'interstitial')],
         ['data-sub', props.sub],
         ['data-sub2', props.sub2],
         ['data-sub3', props.sub3],

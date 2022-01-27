@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useScript } from '../../use-script';
 import { baseProps } from '../../base-props';
+import { prepareZoneId } from '../../zone-id';
 
 const propTypes = {
   ...baseProps,
@@ -40,7 +41,7 @@ export const Banner: React.FC<BannerProps> = React.memo(function Banner({ zoneId
     <div ref={divRef}>
       <ins
         className="adsbyexoclick"
-        data-zoneid={zoneId}
+        data-zoneid={prepareZoneId(zoneId, 'banner')}
         data-sub={sub}
         data-sub2={sub2}
         data-sub3={sub3}

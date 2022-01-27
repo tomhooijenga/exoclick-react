@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useScript } from '../../use-script';
 import { baseProps } from '../../base-props';
+import { prepareZoneId } from '../../zone-id';
 
 const propTypes = {
   ...baseProps,
@@ -34,7 +35,7 @@ export const StickyBanner: React.FC<StickyBannerProps> = React.memo(function Sti
 }) {
   const [width, height] = format.split('x');
   let script = `
-    var ad_idzone = "${zoneId}";
+    var ad_idzone = "${prepareZoneId(zoneId, 'stickyBanner')}";
     var ad_width = "${width}";
     var ad_height = "${height}";
     var v_pos = "${verticalPosition}";

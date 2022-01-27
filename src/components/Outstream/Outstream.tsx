@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useScript } from '../../use-script';
 import { baseProps } from '../../base-props';
 import { InitOptions } from '../../types';
+import { prepareZoneId } from '../../zone-id';
 
 const propTypes = {
   ...baseProps,
@@ -47,7 +48,7 @@ export const Outstream: React.FC<OutstreamProps> = React.memo(function Outstream
     }
 
     const config: InitOptions = {
-      idzone: +zoneId,
+      idzone: +prepareZoneId(zoneId, 'outstream'),
       script: scriptRef.current,
     };
 
