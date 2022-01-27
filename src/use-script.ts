@@ -4,25 +4,29 @@ type LoadingState = Promise<void> | 'done';
 type Options = {
   inline: boolean;
   singleton: boolean;
+  target: HTMLElement | null;
 };
 
 const loadingMap = new Map<string, LoadingState>();
 const defaultOptions: Options = {
   inline: false,
   singleton: true,
+  target: typeof window === 'undefined' ? null : window.document.body,
 } as const;
+
+const EMPTY = {};
 
 export function useScript(
   src: string,
-  options: Partial<Options> = {},
-  attributes: Record<string, string> = {},
+  options: Partial<Options> = EMPTY,
+  attributes: Record<string, string> = EMPTY,
 ): { loading: boolean } {
-  options = { ...defaultOptions, ...options };
+  const opts = { ...defaultOptions, ...options };
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (options.singleton) {
+    if (opts.singleton) {
       const state = loadingMap.get(src);
       if (state !== undefined) {
         if (state === 'done') {
@@ -41,7 +45,7 @@ export function useScript(
 
     Object.entries(attributes).forEach(([name, value]) => script.setAttribute(name, value));
 
-    if (options.inline) {
+    if (opts.inline) {
       loadingMap.set(src, Promise.resolve());
       setLoading(true);
 
@@ -66,13 +70,13 @@ export function useScript(
       script.src = src;
     }
 
-    document.body.appendChild(script);
+    opts.target?.appendChild(script);
 
     return () => {
       loadingMap.delete(src);
       script.remove();
     };
-  }, [src]);
+  }, [src, opts.target, attributes]);
 
   return { loading };
 }
