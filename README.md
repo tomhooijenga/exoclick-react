@@ -30,6 +30,7 @@ Currently, supported formats of ExoClick are:
 * [Fullpage Interstitial (Mobile)](https://exoclick-react.netlify.app/src-components-fullpage-interstitial-fullpage-interstitial#mobile)
 * [Sticky Banner](https://exoclick-react.netlify.app/src-components-sticky-banner-sticky-banner)
 * [Placeholder](https://exoclick-react.netlify.app/src-components-placeholder-placeholder)
+* [Recommendation Widget](https://exoclick-react.netlify.app/src-components-placeholder-placeholder)
 * [Outstream video](https://exoclick-react.netlify.app/src-components-outstream-outstream)
 
 Additionally, there is also the [\<Adblock /> component](https://exoclick-react.netlify.app/src-components-adblock-adblock) to detect 
